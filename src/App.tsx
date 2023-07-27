@@ -15,7 +15,7 @@ function App() {
           <Route index element={<h1>Details</h1>} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route> 
-        <Route path="*" element={<Navigate to='/'/>}/>
+        <Route path="* " element={<Navigate to='/'/>}/>
     </Routes>
       </Container>
   
