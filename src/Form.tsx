@@ -1,14 +1,25 @@
 import { Button, Col, Form, Row, Stack } from 'react-bootstrap'
 import CreatableReactSelect from "react-select/creatable"
 import {Link} from "react-router-dom"
-import { useRef } from 'react'
+import { FormEvent, useRef } from 'react'
+import { NoteData } from "./App"
 
-export function NoteForm({onSubmit}) {
+type NoteDataProps={
+    onSubmit: (data: NoteData)=> void
+}
+
+export function NoteForm({onSubmit}: NoteDataProps) {
     const titleRef = useRef<HTMLInputElement>(null)
     const bodyRef = useRef<HTMLTextAreaElement>(null)
 
-    function handleSubmit(e:FromEvent) {
-     e.preventDefault()   
+    function handleSubmit(e: FormEvent) {
+        e.preventDefault() 
+        
+        onSubmit({
+            title: titleRef.current!.value,
+            body: bodyRef.current!.value,
+            tag:[]
+        })
     }
 
     return (
