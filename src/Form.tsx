@@ -40,7 +40,7 @@ export function NoteForm({ onSubmit,onAddTag,availableTags }: NoteDataProps) {
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='title'>
+                            <Form.Group controlId='tag'>
                                 <Form.Label>Tags</Form.Label>
                                 <CreatableReactSelect
                                     onCreateOption={label => {

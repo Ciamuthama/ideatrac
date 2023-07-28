@@ -24,6 +24,26 @@ function NotesList() {
                         <Form.Control type='text'/>
                 </Form.Group>
                 </Col>
+                <Col>
+                <Form.Group controlId='tag'>
+                                <Form.Label>Tags</Form.Label>
+                                <CreatableReactSelect
+                                    onCreateOption={label => {
+                                        const newTag = { id: uuidV4(), label }
+                                        onAddTag(newTag)
+                                        setSelectedTag(prev=>[...prev, newTag])
+                                    }}
+                                    value={selectedTag.map(tag => {
+                                        return { label: tag.label, value: tag.id }
+                                    })}
+                                    options={availableTags.map(tag => { return { label: tag.label, value: tag.id}})}
+                                    onChange={tag => {
+                                        setSelectedTag(tag.map(tag => {
+                                            return { label: tag.label, id: tag.value }
+                                        }))
+                                    }} isMulti />
+                            </Form.Group>
+                </Col>
             </Row>
         </Form>
     </>);
