@@ -19,7 +19,7 @@ export function NoteForm({onSubmit}: NoteDataProps) {
         onSubmit({
             title: titleRef.current!.value,
             body: bodyRef.current!.value,
-            tag:[]
+            tags:[]
         })
     }
 

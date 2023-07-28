@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { New } from "./New"
 import { useLocalStorage } from "./useLocalStorage"
-import { useMemo } from "react"
-import {v4 as uuidV4} from 'uuid'
+import { useMemo } from "react";
+import {v4 as uuidV4} from "uuid"
 
 export type RawNotes = {
   id: string
@@ -41,7 +41,7 @@ function App() {
     })
   }, [notes, tags])
   
-  function onCreatNotes({tags,...data}: NoteData) {
+  function onCreateNotes({tags,...data}: NoteData) {
     setNotes(prevNotes => {
     return[...prevNotes,{...data, id:uuidV4(),tagIds: tags.map(tag => tag.id)},]
   })
@@ -52,12 +52,12 @@ function App() {
       <Container className="my-4">
       <Routes>
         <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/create" element={<New/>} />
+        <Route path="/create" element={<New onSubmit={onCreateNotes}/>} />
+        <Route path="*" element={<Navigate to='/'/>}/>
         <Route path="/:id">
           <Route index element={<h1>Details</h1>} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route> 
-        <Route path="* " element={<Navigate to='/'/>}/>
     </Routes>
       </Container>
   
