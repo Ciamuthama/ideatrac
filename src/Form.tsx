@@ -7,9 +7,11 @@ import { v4 as uuidV4 } from "uuid"
 
 type NoteDataProps = {
     onSubmit: (data: NoteData) => void
+    onAddTag: (tag: Tag) => void
+    availableTags: Tag[]
 }
 
-export function NoteForm({ onSubmit }: NoteDataProps) {
+export function NoteForm({ onSubmit,onAddTag,availableTags }: NoteDataProps) {
     const titleRef = useRef<HTMLInputElement>(null)
     const bodyRef = useRef<HTMLTextAreaElement>(null)
     const [selectedTag, setSelectedTag] = useState<Tag[]>([])
@@ -43,11 +45,11 @@ export function NoteForm({ onSubmit }: NoteDataProps) {
                                         const newTag = { id: uuidV4(), label }
                                         onAddTag(newTag)
                                         setSelectedTag(prev=>[...prev, newTag])
-
                                     }}
                                     value={selectedTag.map(tag => {
                                         return { label: tag.label, value: tag.id }
                                     })}
+                                    options={availableTags.map(tag => { return { label: tag.label, value: tag.id}})}
                                     onChange={tag => {
                                         setSelectedTag(tag.map(tag => {
                                             return { label: tag.label, id: tag.value }
