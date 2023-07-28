@@ -14,7 +14,7 @@ function NotesList({ availableTags }: NoteListProps) {
     return (<>
         <Row>
             <Col>
-            <h1>Notes</h1>
+                <h1>Notes</h1>
             </Col>
             <Col xs='auto'>
                 <Stack gap={2} direction="horizontal">
@@ -30,23 +30,23 @@ function NotesList({ availableTags }: NoteListProps) {
                 <Col>
                     <Form.Group controlId="title">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type='text' value={title} onChange={e=>setTitle(e.target.value)}/>
-                </Form.Group>
+                        <Form.Control type='text' value={title} onChange={e => setTitle(e.target.value)} />
+                    </Form.Group>
                 </Col>
                 <Col>
-                <Form.Group controlId='tag'>
-                                <Form.Label>Tags</Form.Label>
-                                <ReactSelect
-                                    value={selectedTag.map(tag => {
-                                        return { label: tag.label, value: tag.id }
-                                    })}
-                                    options={availableTags.map(tag => { return { label: tag.label, value: tag.id}})}
-                                    onChange={tag => {
-                                        setSelectedTag(tag.map(tag => {
-                                            return { label: tag.label, id: tag.value }
-                                        }))
-                                    }} isMulti />
-                            </Form.Group>
+                    <Form.Group controlId='tag'>
+                        <Form.Label>Tags</Form.Label>
+                        <ReactSelect
+                            value={selectedTag.map(tag => {
+                                return { label: tag.label, value: tag.id }
+                            })}
+                            options={availableTags.map(tag => { return { label: tag.label, value: tag.id } })}
+                            onChange={tag => {
+                                setSelectedTag(tag.map(tag => {
+                                    return { label: tag.label, id: tag.value }
+                                }))
+                            }} isMulti />
+                    </Form.Group>
                 </Col>
             </Row>
         </Form>
