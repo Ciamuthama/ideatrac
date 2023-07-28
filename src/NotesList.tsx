@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ReactSelect from "react-select";
+import { Tag } from "./App";
 
-function NotesList() {
+type NoteListProps = {
+    availableTags: Tag[]
+}
+function NotesList({ availableTags }: NoteListProps) {
+    const [selectedTag, setSelectedTag] = useState<Tag[]>([])
+
     return (<>
         <Row>
             <Col>
@@ -20,19 +28,14 @@ function NotesList() {
             <Row className="mb-4">
                 <Col>
                     <Form.Group controlId="title">
-                        <Form.Label column sm={3}>Title</Form.Label>
+                        <Form.Label>Title</Form.Label>
                         <Form.Control type='text'/>
                 </Form.Group>
                 </Col>
                 <Col>
                 <Form.Group controlId='tag'>
                                 <Form.Label>Tags</Form.Label>
-                                <CreatableReactSelect
-                                    onCreateOption={label => {
-                                        const newTag = { id: uuidV4(), label }
-                                        onAddTag(newTag)
-                                        setSelectedTag(prev=>[...prev, newTag])
-                                    }}
+                                <ReactSelect
                                     value={selectedTag.map(tag => {
                                         return { label: tag.label, value: tag.id }
                                     })}
