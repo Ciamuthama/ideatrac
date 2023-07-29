@@ -8,6 +8,7 @@ import { useMemo } from "react";
 import {v4 as uuidV4} from "uuid"
 import NotesList from "./NotesList"
 import { Note } from "./Note"
+import { Edit } from "./Edit"
 
 export type RawNotes = {
   id: string
@@ -54,6 +55,18 @@ function App() {
     setTags(prev => [...prev,tag])
   }
  
+  function onUpdateNotes(id:string,{tags,...data}:NoteData) {
+    setNotes(prevNote => {
+      return prevNote.map(note => {
+        if (note.id === id) {
+          return{...note, ...data, tagIds: tags.map(tag => tag.id)}
+        } else {
+          return note
+        }
+      })
+    })
+  }
+
   return (
     <>
       <Container className="my-4">
@@ -63,7 +76,7 @@ function App() {
         <Route path="*" element={<Navigate to='/'/>}/>
         <Route path="/:id" element={<Details  notes={notesWithTags}/>} >
           <Route index element={<Note />} />
-          <Route path="edit" element={<h1>Edit</h1>} />
+          <Route path="edit" element={<Edit onSubmit={onUpdateNotes} onAddTag={addTag} availableTags={tags} />} />
         </Route> 
     </Routes>
       </Container>
