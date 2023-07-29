@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { New } from "./New"
+import Details  from './Details'
 import { useLocalStorage } from "./useLocalStorage"
 import { useMemo } from "react";
 import {v4 as uuidV4} from "uuid"
@@ -59,7 +60,7 @@ function App() {
         <Route path="/" element={<NotesList notes={notesWithTags}  availableTags={tags}/>} />
           <Route path="/create" element={<New onSubmit={onCreateNotes} onAddTag={addTag} availableTags={tags} />} />
         <Route path="*" element={<Navigate to='/'/>}/>
-        <Route path="/:id">
+        <Route path="/:id" element={<Details />} notes={notesWithTags} >
           <Route index element={<h1>Details</h1>} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route> 
