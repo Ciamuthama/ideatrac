@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useParams } from "react-router-dom"
+import { Navigate, Outlet, useOutletContext, useParams } from "react-router-dom"
 import { Note } from "./App"
 
 type NoteDetailsProps = {
@@ -17,3 +17,7 @@ function Details({notes}:NoteDetailsProps) {
 }
 
 export default Details
+
+export function useNotes(){
+    return useOutletContext<Note>()
+}
