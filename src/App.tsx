@@ -7,6 +7,7 @@ import { useLocalStorage } from "./useLocalStorage"
 import { useMemo } from "react";
 import {v4 as uuidV4} from "uuid"
 import NotesList from "./NotesList"
+import { Note } from "./Note"
 
 export type RawNotes = {
   id: string
@@ -61,7 +62,7 @@ function App() {
           <Route path="/create" element={<New onSubmit={onCreateNotes} onAddTag={addTag} availableTags={tags} />} />
         <Route path="*" element={<Navigate to='/'/>}/>
         <Route path="/:id" element={<Details  notes={notesWithTags}/>} >
-          <Route index element={<h1>Details</h1>} />
+          <Route index element={<Note />} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route> 
     </Routes>

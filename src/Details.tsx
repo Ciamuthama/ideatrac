@@ -19,5 +19,5 @@ function Details({notes}:NoteDetailsProps) {
 export default Details
 
 export function useNotes(){
-    return useOutletContext<Note>()
+    return useOutletContext<Note >()
 }
