@@ -13,9 +13,10 @@ type SimplifiedNote = {
 type NoteListProps = {
     availableTags: Tag[]
     notes: SimplifiedNote[]
+    onUpdateTags: (id: string, label:string)=>void
 }
 
-function NotesList({ availableTags,notes }: NoteListProps) {
+function NotesList({ availableTags,notes, onUpdateTags }: NoteListProps) {
     const [selectedTag, setSelectedTag] = useState<Tag[]>([])
     const [title, setTitle] = useState("")
  
@@ -73,6 +74,7 @@ function NotesList({ availableTags,notes }: NoteListProps) {
                 </Col>
             ))}
         </Row>
+        <EditTagsModal onUpdateTags={onUpdateTags}></EditTagsModal>
     </>);
 }
 export default NotesList
