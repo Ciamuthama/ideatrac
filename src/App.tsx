@@ -67,11 +67,23 @@ function App() {
     })
   }
 
+  function updateTag(id: string, label:string) {
+    setTags(prevTags => {
+      return prevTags.map(tag => {
+        if (tag.id === id) {
+        return{...tag,label}
+        }else{
+          return tag
+      }
+    })
+  })
+}
+
   return (
     <>
       <Container className="my-4">
       <Routes>
-        <Route path="/" element={<NotesList notes={notesWithTags}  availableTags={tags}/>} />
+        <Route path="/" element={<NotesList notes={notesWithTags}   onUpdateTags={updateTag} availableTags={tags}/>} />
           <Route path="/create" element={<New onSubmit={onCreateNotes} onAddTag={addTag} availableTags={tags} />} />
         <Route path="*" element={<Navigate to='/'/>}/>
         <Route path="/:id" element={<Details  notes={notesWithTags}/>} >
