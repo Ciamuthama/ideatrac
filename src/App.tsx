@@ -60,7 +60,7 @@ function App() {
         <Route path="/" element={<NotesList notes={notesWithTags}  availableTags={tags}/>} />
           <Route path="/create" element={<New onSubmit={onCreateNotes} onAddTag={addTag} availableTags={tags} />} />
         <Route path="*" element={<Navigate to='/'/>}/>
-        <Route path="/:id" element={<Details />} notes={notesWithTags} >
+        <Route path="/:id" element={<Details  notes={notesWithTags}/>} >
           <Route index element={<h1>Details</h1>} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route> 
