@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { New } from "./New"
-import Details  from './Details'
+import {} from './Details'
 import { useLocalStorage } from "./useLocalStorage"
 import { useMemo } from "react";
 import {v4 as uuidV4} from "uuid"
@@ -56,10 +56,10 @@ function App() {
   }
  
   function onUpdateNotes(id:string,{tags,...data}:NoteData) {
-    setNotes(prevNote => {
-      return prevNote.map(note => {
-        if (note.id === id) {
-          return{...note, ...data, tagIds: tags.map(tag => tag.id)}
+    setNotes(prevNotes => {
+      return prevNotes.map(note => {
+        if(note.id === id) {
+          return{ ...note, ...data, tagIds: tags.map(tag => tag.id)}
         } else {
           return note
         }

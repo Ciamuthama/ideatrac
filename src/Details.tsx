@@ -5,7 +5,7 @@ type NoteDetailsProps = {
    notes:Note[] 
 }
 
-function Details({notes}:NoteDetailsProps) {
+export function Details({notes}:NoteDetailsProps) {
     const { id } = useParams()
     const note = notes.find(n => n.id === id)
     if (note == null) {
@@ -16,8 +16,9 @@ function Details({notes}:NoteDetailsProps) {
     )
 }
 
-export default Details
 
+
+// eslint-disable-next-line react-refresh/only-export-components
 export function useNotes(){
     return useOutletContext<Note >()
 }
