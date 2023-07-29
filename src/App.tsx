@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { New } from "./New"
-import {} from './Details'
+import {Details } from './Details'
 import { useLocalStorage } from "./useLocalStorage"
 import { useMemo } from "react";
 import {v4 as uuidV4} from "uuid"
