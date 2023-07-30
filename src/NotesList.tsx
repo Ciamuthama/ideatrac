@@ -49,9 +49,9 @@ function NotesList({ availableTags,notes, onUpdateTags,  onDeleteTags }: NoteLis
             <Col xs='auto'>
                 <Stack gap={2} direction="horizontal">
                     <Link to='/create'>
-                        <Button variant="primary">Create</Button>
+                        <Button variant=" btn btn-primary">Create</Button>
                     </Link>
-                    <Button onClick={()=> setEditTagsModalIsOpen(true)} variant="secondary">Edit Tags</Button>
+                    <Button  onClick={()=> setEditTagsModalIsOpen(true)} variant="btn btn-secondary">Edit Tags</Button>
                 </Stack>
             </Col>
         </Row>
@@ -82,7 +82,7 @@ function NotesList({ availableTags,notes, onUpdateTags,  onDeleteTags }: NoteLis
         </Form>
         <Row xs={1} sm={2} lg={3} xl={4} className="g-3">
             {filteredNotes.map( note=>(
-                <Col key={note.id}>
+                <Col key={note.id} >
                     <NoteCard id={ note.id} title={note.title}  tags={note.tags} />
                 </Col>
             ))}
@@ -97,11 +97,11 @@ function NoteCard({ id, title, tags }: SimplifiedNote) {
         <Card as={Link} to={`/${id}`} className={`h-100 text-reset text-decoration-none`}>
             <Card.Body>
                 <Stack gap={2} className="align-items-center justify-content-center h-100">
-                    <span className="fs-5">{ title}</span>
+                    <span className="fs-3">{ title}</span>
                     {tags.length > 0 && (
-                        <Stack gap={1} direction="horizontal" className="justify-context-center flex-wrap">
+                        <Stack gap={3} direction="horizontal" className="justify-context-center flex-wrap">
                             {tags.map(tag => (
-                                <Badge className='text-truncate' key={tag.id}>
+                                <Badge className='text-truncate p-2 fs-9 lh-sm' bg='dark' key={tag.id}>
                                     {tag.label}
                                 </Badge>
                             ))}
@@ -116,7 +116,7 @@ function NoteCard({ id, title, tags }: SimplifiedNote) {
 export function EditTagsModal({availableTags, handleClose, show, onDeleteTags,onUpdateTags}: EditTagsModalProp) {
     return (
         <>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Tags</Modal.Title>
                 </Modal.Header>
