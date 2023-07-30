@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Badge, Button, Card, Col, Form, Row, Stack } from "react-bootstrap";
+import { Badge, Button, Card, Col, Form, Modal, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import {  Tag } from "./App";
@@ -38,6 +38,8 @@ function NotesList({ availableTags,notes, onUpdateTags }: NoteListProps) {
         })
     }, [title, selectedTag ,notes]) 
     
+   
+
     return (<>
         <Row className="align-items-center mb-4">
             <Col>
@@ -110,6 +112,32 @@ function NoteCard({ id, title, tags }: SimplifiedNote) {
     )
 }
 
-export function EditTagsModal() {
-    return(
+export function EditTagsModal({availableTags, handleClose, show, onDeleteTags,onUpdateTags}: EditTagsModalProp) {
+    return (
+        <>
+        <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Tags</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Stack gap={2}>
+                            {availableTags.map(tag => (
+                                <Row key={tag.id}>
+                                    <Col>
+                                    <Form.Control type="text" value={tag.label} onChange={e=> onUpdateTags(tag.id, e.target.value)}/>
+                                    </Col>
+                                    <Col xs='auto'>
+                                        <Button onClick={()=>onDeleteTags(tag.id)} variant="danger">
+                                            &times;
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            ))}
+                        </Stack>
+                    </Form>
+                </Modal.Body>
+        </Modal>
+        </>
+    )
 }
