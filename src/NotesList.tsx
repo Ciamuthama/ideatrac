@@ -25,7 +25,7 @@ type EditTagsModalProp={
     onUpdateTags: (id: string,label: string)=> void
 }
 
-function NotesList({ availableTags,notes, onUpdateTags }: NoteListProps) {
+function NotesList({ availableTags,notes, onUpdateTags,  onDeleteTags }: NoteListProps) {
     const [selectedTag, setSelectedTag] = useState<Tag[]>([])
     const [title, setTitle] = useState("")
     const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false)
@@ -39,6 +39,7 @@ function NotesList({ availableTags,notes, onUpdateTags }: NoteListProps) {
     }, [title, selectedTag ,notes]) 
     
    
+
 
     return (<>
         <Row className="align-items-center mb-4">
