@@ -51,7 +51,7 @@ function NotesList({ availableTags,notes, onUpdateTags,  onDeleteTags }: NoteLis
                     <Link to='/create'>
                         <Button variant="primary">Create</Button>
                     </Link>
-                    <Button variant="secondary">Edit</Button>
+                    <Button onClick={()=> setEditTagsModalIsOpen(true)} variant="secondary">Edit</Button>
                 </Stack>
             </Col>
         </Row>
