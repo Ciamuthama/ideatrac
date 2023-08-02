@@ -44,7 +44,7 @@ function NotesList({ availableTags,notes, onUpdateTags,  onDeleteTags }: NoteLis
     return (<>
         <Row className="align-items-center mb-4">
             <Col>
-                <h1>NoteWave</h1>
+                <h1>IdeaTrac</h1>
             </Col>
             <Col xs='auto'>
                 <Stack gap={2} direction="horizontal">
